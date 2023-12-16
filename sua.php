@@ -61,7 +61,7 @@
 </head>
 <body>
 <?php
-    $kn = mysqli_connect('localhost', 'it6020003_minhdn', '123456','thuchanh');
+    $kn = mysqli_connect('localhost', 'root', 'root','thuchanh');
     if (!$kn) {
         echo 'Kết nối thất bại';
     }
