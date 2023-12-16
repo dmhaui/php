@@ -21,21 +21,29 @@
     th {
       background-color: #f2f2f2;
     }
+    tr.olailop {
+      background-color: #ffdddd;
+    }
+    tr.lenlop {
+      background-color: #c2ffb6;
+    }
+
   </style>
 </head>
 <body>
 <h1 align="center">ĐIỂM TỔNG KẾT CỦA SINH VIÊN</h1>
 <?php
-    $kn = mysqli_connect('localhost', 'it6020003_minhdn', '123456','thuchanh');
+    $kn = mysqli_connect('localhost', 'root', 'root','thuchanh');
+
     if (!$kn) {
-        echo 'Kết nối thất bại';
+        echo 'Kết nối thất bại: '. mysqli_connect_error()."\n";;
     }
 
     $sql = 'select * from sinhvien';
     $kq = mysqli_query($kn, $sql);
 
     if (!$kq) {
-        echo 'Lỗi truy vấn';
+      die('Lỗi truy vấn: ' . mysqli_error($kn));
     }
 
     echo '<table>';
@@ -60,11 +68,13 @@
 
         if ($tongdiem > 20){
             $a = 'Được lên lớp';
+            echo '<tr class="lenlop">';
         } else {
             $a = 'Ở lại lớp';
+            echo '<tr class="olailop">';
         }
 
-        echo '<tr>';
+        
         echo "<td>$masv</td>";
         echo "<td>$hoten</td>";
         echo "<td>$toan</td>";
