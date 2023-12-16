@@ -60,7 +60,7 @@
     </style>
 </head>
 <body>
-    <form action="" method='POST' id="addForm">
+    <form action="" method="POST" id="addForm">
         <h1>Thêm Sinh Viên</h1>
         <table>
             <tr>
@@ -69,26 +69,27 @@
             </tr>
             <tr>
                 <th>Họ tên:</th>
-                <td><input type="text" name="hoten" id="" required placeholder="Nhập họ tên"></td>
+                <td><input type="text" name="hoten" required placeholder="Nhập họ tên"></td>
             </tr>
             <tr>
                 <th>Điểm toán:</th>
-                <td><input type="number" name="toan" id="" required placeholder="Nhập điểm toán"></td>
+                <td><input type="number" name="toan" required placeholder="Nhập điểm toán" min="0" max="10"></td>
             </tr>
             <tr>
                 <th>Điểm lý:</th>
-                <td><input type="number" name="ly" id="" required placeholder="Nhập điểm lý"></td>
+                <td><input type="number" name="ly" required placeholder="Nhập điểm lý" min="0" max="10"></td>
             </tr>
             <tr>
                 <th>Điểm hoá:</th>
-                <td><input type="number" name="hoa" id="" required placeholder="Nhập điểm hoá"></td>
+                <td><input type="number" name="hoa" required placeholder="Nhập điểm hoá" min="0" max="10"></td>
             </tr>
             <tr>
                 <th></th>
-                <td><input type="submit" name="them" id="" value="Thêm"></td>
+                <td><input type="submit" name="them" value="Thêm"></td>
             </tr>
         </table>
     </form>
+
 
     <?php
     if(isset($_POST['them'])){
@@ -98,8 +99,10 @@
         $ly = $_POST['ly'];
         $hoa = $_POST['hoa'];
 
-        $kn = mysqli_connect('localhost','it6020003_minhdn','123456','thuchanh');
-        if(!$kn){echo 'Kết nối thất bại';}
+        $kn = mysqli_connect('localhost', 'root', 'root','thuchanh');
+        if (!$kn) {
+            echo 'Kết nối thất bại: '. mysqli_connect_error()."\n\n";;
+        }
 
         $sql = "INSERT INTO sinhvien VALUES ('$masv','$hoten','$toan','$ly','$hoa')";
         $kq = mysqli_query($kn, $sql);
